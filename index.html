@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="main.css">
+  <title>bebe</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
+</head>
+
+<body class="body">
+  <div class="container">
+
+
+
+
+    <h1 class="question">Will you be my Valentine?</h1>
+
+    <div id="img" class="img"></div>
+  </div>
+  <a href="#popup" class="btn__yes">
+    yes
+  </a>
+
+  <button id="runaway-btn" class="runaway-btn">
+    no
+  </button>
+
+  <script>
+
+
+    const button = document.getElementById("runaway-btn");
+
+    const animateMove = (element, prop, pixels) =>
+      anime({
+        targets: element,
+        [prop]: `${pixels}px`,
+        easing: "easeOutCirc"
+      });
+
+    ["mouseover", "click"].forEach(function (el) {
+      button.addEventListener(el, function (event) {
+        const top = getRandomNumber(window.innerHeight - this.offsetHeight);
+        const left = getRandomNumber(window.innerWidth - this.offsetWidth);
+
+        animateMove(this, "left", left).play();
+        animateMove(this, "top", top).play();
+      });
+    });
+
+    const getRandomNumber = (num) => {
+      return Math.floor(Math.random() * (num + 1));
+    };
+  </script>
+
+  <script>
+    function pictureChange() {
+      document.getElementById('img').style.backgroundImage = 'url("./what.png")';
+    }
+
+    document.getElementById('runaway-btn').addEventListener('mouseover', pictureChange);
+  </script>
+
+  <div class="popup" id="popup">
+    <div class="popup_main">
+      <strong>YAAY see you on the 14th bebe</strong>
+      <div class="img__yes"></div>
+    </div>
+  </div>
+</body>
+
+</html>
